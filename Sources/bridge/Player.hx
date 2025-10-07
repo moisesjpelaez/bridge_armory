@@ -8,6 +8,7 @@ class Player {
     public var id(get, null): String;
     public var name(get, null): String;
     public var photos(get, null): Array<Any>;
+    public var extra(get, null): Any;
 
     var authorizeCallback: Bool->Void = null;
 
@@ -33,6 +34,10 @@ class Player {
 
     function get_photos(): Array<Any> {
         return Syntax.code('bridge.player.photos');
+    }
+
+    function get_extra(): Any {
+        return Syntax.code('bridge.player.extra');
     }
 
     public function authorize(?options: Any = null, ?callback: Bool->Void = null) {

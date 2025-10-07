@@ -5,6 +5,7 @@ import js.Syntax;
 class Leaderboards {
     var setScoreCallback: Bool->Void = null;
     var getEntriesCallback: (Bool, Map<Any, TEntry>)->Void = null;
+    var showNativePopupCallback: Bool->Void = null;
 
     public function new() {
 
@@ -47,6 +48,26 @@ class Leaderboards {
         if (getEntriesCallback != null) {
             getEntriesCallback(false, []);
             getEntriesCallback = null;
+        }
+    }
+
+    function showNativePopup(id: String, ?callback: Bool->Void = null) {
+        if (showNativePopupCallback != null) return;
+        showNativePopupCallback = callback;
+        Syntax.code('bridge.leaderboard.showNativePopup({0}).then({1}).catch({2})', id, onShowNativePopupThen, onShowNativePopupCatch);
+    }
+
+    function onShowNativePopupThen() {
+        if (showNativePopupCallback != null) {
+            showNativePopupCallback(true);
+            showNativePopupCallback = null;
+        }
+    }
+
+    function onShowNativePopupCatch(error: String) {
+        if (showNativePopupCallback != null) {
+            showNativePopupCallback(false);
+            showNativePopupCallback = null;
         }
     }
 }
