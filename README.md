@@ -25,6 +25,8 @@ Playgama Bridge for [Armory3D](https://armory3d.org/engine/). One SDK for cross-
 + [MSN](https://www.msn.com/en-us/play)
 + [Discord](https://discord.com/gaming)
 + [BitQuest](https://t.me/BitquestGamesBot/start)
++ [Huawei](https://appgallery.huawei.com)
++ [JioGames](https://play.jiogames.com)
 + Other [Work In Progress]
 
 ## Plugins for game engines

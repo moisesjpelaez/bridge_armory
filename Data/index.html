@@ -8,18 +8,29 @@
 
 <body style="margin: 0; padding: 0;">
     <canvas style="object-fit: contain; min-width: 100%; max-width: 100%; max-height: 100vh; min-height: 100vh; display: block;" id='khanvas' tabindex='-1'></canvas>
-    <script type="text/javascript" src="playgama-bridge.js"></script>
     <script>
-        bridge.initialize().then(function () {
-            const khaScriptElement = document.createElement('script');
-            khaScriptElement.src = 'kha.js';
-            document.body.appendChild(khaScriptElement);
-            khaScriptElement.onload = function() {
-                console.log("Kha initialized.");
+        function onBridgeLoaded() {
+            bridge.initialize().then(function () {
+                const scriptElement = document.createElement('script');
+                scriptElement.src = 'kha.js';
+                document.body.appendChild(scriptElement);
+                scriptElement.onload = function() {
+                    console.log("Kha initialized.");
+                }
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
+
+        function onBridgeError() {
+            const scriptElement = document.createElement('script');
+            scriptElement.src = './playgama-bridge.js';
+            document.body.appendChild(scriptElement);
+            scriptElement.onload = function() {
+                onBridgeLoaded();
             }
-        }).catch(function(error) {
-            console.log(error);
-        });
+        }
     </script>
+    <script type="text/javascript" src="https://bridge.playgama.com/v1/stable/playgama-bridge.js" onload="onBridgeLoaded()" onerror="onBridgeError()"></script>
 </body>
 </html>
