@@ -34,7 +34,7 @@ Playgama Bridge for [Armory3D](https://armory3d.org/engine/). One SDK for cross-
 ## Plugins for game engines
 + [JS](https://github.com/playgama/bridge)
 + [Construct 3](https://github.com/playgama/bridge-construct)
-+ [Unity](https://github.com/playgama/bridge-unity)
++ Unity [Plugin](https://github.com/playgama/bridge-unity) | [Examples](https://github.com/playgama/bridge-unity-examples)
 + [Godot 3](https://github.com/playgama/bridge-godot)
 + [Godot 4](https://github.com/playgama/bridge-godot-4)
 + [GameMaker](https://github.com/playgama/bridge-gamemaker)
