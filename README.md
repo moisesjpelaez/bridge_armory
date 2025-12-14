@@ -5,7 +5,7 @@ Playgama Bridge for [Armory3D](https://armory3d.org/engine/). One SDK for cross-
 - Create `Subprojects` folder alongside your `.blend` file if it doesn't exists
 - `git clone https://github.com/moisesjpelaez/bridge_armory.git` in `Subprojects` folder
 
-## Notes
+Notes:
 - after building for html5, locate the `index.html` file in `build_[your_project_name]/html5` folder and put your game's name in the `<title>` tag
 
 ## Supported platforms
