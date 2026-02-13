@@ -9,7 +9,11 @@
 <body style="margin: 0; padding: 0;">
     <canvas style="object-fit: contain; min-width: 100%; max-width: 100%; max-height: 100vh; min-height: 100vh; display: block;" id='khanvas' tabindex='-1'></canvas>
     <script>
-        const CANVAS = document.getElementById('canvas');
+        const CANVAS = document.getElementById('khanvas');
+
+        let bridgeScript = null;
+        let bridgeTimeout = null;
+        let bridgeLoaded = false;
 
         function addLocalBridge() {
             if (bridgeLoaded) return;
