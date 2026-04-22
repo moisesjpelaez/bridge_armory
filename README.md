@@ -30,6 +30,8 @@ Notes: after building for html5, locate the `index.html` file in `build_[your_pr
 + [Reddit](https://www.reddit.com/r/GamesOnReddit/)
 + [Xiaomi](https://global.app.mi.com/details?lo=ES&la=en&id=com.xiaomi.glgm)
 + [Microsoft Store](https://apps.microsoft.com)
++ [GameSnacks](https://gamesnacks.com/)
++ [Dlightek/Aha Games](https://aha.game/)
 + Other [Work In Progress]
 
 ## Plugins for game engines

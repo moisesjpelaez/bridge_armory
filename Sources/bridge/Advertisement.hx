@@ -7,6 +7,7 @@ class Advertisement {
     public var bannerStateChanged: Signal = new Signal();
     public var interstitialStateChanged: Signal = new Signal();
     public var rewardedStateChanged: Signal = new Signal();
+    public var advancedBannersStateChanged: Signal = new Signal();
 
     public var minimumDelayBetweenInterstitial(get, null): Int;
     public var isBannerSupported(get, null): Bool;
@@ -16,6 +17,8 @@ class Advertisement {
     public var isRewardedSupported(get, null): Bool;
     public var rewardedState(get, null): String;
     public var rewardedPlacement(get, null): String;
+    public var isAdvancedBannersSupported(get, null): Bool;
+    public var advancedBannersState(get, null): String;
 
     var checkAdBlockCallback: Bool->Void = null;
 
@@ -23,6 +26,7 @@ class Advertisement {
         Syntax.code('bridge.advertisement.on(bridge.EVENT_NAME.BANNER_STATE_CHANGED, {0})', onBannerStateChanged);
         Syntax.code('bridge.advertisement.on(bridge.EVENT_NAME.INTERSTITIAL_STATE_CHANGED, {0})', onInterstitialStateChanged);
         Syntax.code('bridge.advertisement.on(bridge.EVENT_NAME.REWARDED_STATE_CHANGED, {0})', onRewardedStateChanged);
+        Syntax.code('bridge.advertisement.on(bridge.EVENT_NAME.ADVANCED_BANNERS_STATE_CHANGED, {0})', onAdvancedBannersStateChanged);
     }
 
     function get_minimumDelayBetweenInterstitial(): Int {
@@ -61,6 +65,14 @@ class Advertisement {
         return Syntax.code('bridge.advertisement.rewardedPlacement');
     }
 
+    function get_isAdvancedBannersSupported(): Bool {
+        return Syntax.code('bridge.advertisement.isAdvancedBannersSupported');
+    }
+
+    function get_advancedBannersState(): String {
+        return Syntax.code('bridge.advertisement.advancedBannersState');
+    }
+
     public function showBanner(position: String, placement: String) {
         Syntax.code('bridge.advertisement.showBanner({0}, {1})', position, placement);
     }
@@ -75,6 +87,14 @@ class Advertisement {
 
     public function showRewarded(?placement: String) {
         Syntax.code('bridge.advertisement.showRewarded({0})', placement);
+    }
+
+    public function showAdvancedBanners(?placement: String) {
+        Syntax.code('bridge.advertisement.showAdvancedBanners({0})', placement);
+    }
+
+    public function hideAdvancedBanners() {
+        Syntax.code('bridge.advertisement.hideAdvancedBanners()');
     }
 
     public function checkAdBlock(callback: Bool->Void) {
@@ -107,5 +127,9 @@ class Advertisement {
             checkAdBlockCallback(false);
             checkAdBlockCallback = null;
         }
+    }
+
+    function onAdvancedBannersStateChanged(state: String) {
+        advancedBannersStateChanged.emit(state);
     }
 }

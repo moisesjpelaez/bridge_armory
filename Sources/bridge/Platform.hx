@@ -57,8 +57,12 @@ class Platform {
         return Syntax.code('bridge.platform.isGetGameByIdSupported');
     }
 
-    public function sendMessage(message: String) {
-        Syntax.code('bridge.platform.sendMessage({0})', message);
+    public function sendMessage(message: String, options: Any = {}) {
+        Syntax.code('bridge.platform.sendMessage({0}, {1})', message, options);
+    }
+
+    public function sendCustomMessage(id: String, options: Any = {}) {
+        Syntax.code('bridge.platform.sendCustomMessage({0}, {1})', id, options);
     }
 
     public function getServerTime(callback: Int->Void): Void {
