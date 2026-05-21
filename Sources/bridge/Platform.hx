@@ -57,11 +57,11 @@ class Platform {
         return Syntax.code('bridge.platform.isGetGameByIdSupported');
     }
 
-    public function sendMessage(message: String, options: Any = {}) {
+    public function sendMessage(message: String, ?options: Any = null) {
         Syntax.code('bridge.platform.sendMessage({0}, {1})', message, options);
     }
 
-    public function sendCustomMessage(id: String, options: Any = {}) {
+    public function sendCustomMessage(id: String, ?options: Any = null) {
         Syntax.code('bridge.platform.sendCustomMessage({0}, {1})', id, options);
     }
 
