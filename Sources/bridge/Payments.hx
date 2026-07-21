@@ -19,7 +19,7 @@ class Payments {
         return Syntax.code('bridge.payments.isSupported');
     }
 
-    public function purchase(id: String, ?callback: (Bool, Map<Any, TPurchaseResult>)->Void = null) {
+    public function purchase(id: String, callback: (Bool, Map<Any, TPurchaseResult>)->Void = null) {
         if (purchaseCallback != null) return;
         purchaseCallback = callback;
         Syntax.code('bridge.payments.purchase({0}).then({1}).catch({2})', id, onPurchaseThen, onPurchaseCatch);
@@ -39,7 +39,7 @@ class Payments {
         }
     }
 
-    public function consumePurchase(id: String, ?callback: Bool->Void = null) {
+    public function consumePurchase(id: String, callback: Bool->Void = null) {
         if (consumePurchaseCallback != null) return;
         consumePurchaseCallback = callback;
         Syntax.code('bridge.payments.consumePurchase({0}).then({1}).catch({2})', id, onConsumePurchaseThen, onConsumePurchaseCatch);
@@ -59,7 +59,7 @@ class Payments {
         }
     }
 
-    public function getCatalog(?callback: (Bool, Map<Any, TCatalogItem>)->Void = null) {
+    public function getCatalog(callback: (Bool, Map<Any, TCatalogItem>)->Void = null) {
         if (getCatalogCallback != null) return;
         getCatalogCallback = callback;
         Syntax.code('bridge.payments.getCatalog().then({0}).catch({1})', onGetCatalogThen, onGetCatalogCatch);
@@ -79,7 +79,7 @@ class Payments {
         }
     }
 
-    public function getPurchases(?callback: (Bool, Map<Any, TPurchase>)->Void = null) {
+    public function getPurchases(callback: (Bool, Map<Any, TPurchase>)->Void = null) {
         if (getPurchasesCallback != null) return;
         getPurchasesCallback = callback;
         Syntax.code('bridge.payments.getPurchases().then({0}).catch({1})', onGetPurchasesThen, onGetPurchasesCatch);

@@ -5,6 +5,7 @@ import js.Syntax;
 class Player {
     public var isAuthorizationSupported(get, null): Bool;
     public var isAuthorized(get, null): Bool;
+    public var isGuest(get, null): Bool;
     public var id(get, null): String;
     public var name(get, null): String;
     public var photos(get, null): Array<Any>;
@@ -24,6 +25,10 @@ class Player {
         return Syntax.code('bridge.player.isAuthorized');
     }
 
+    function get_isGuest(): Bool {
+        return Syntax.code('bridge.player.isGuest');
+    }
+
     function get_id(): String {
         return Syntax.code('bridge.player.id');
     }
@@ -40,7 +45,7 @@ class Player {
         return Syntax.code('bridge.player.extra');
     }
 
-    public function authorize(?options: Any = null, ?callback: Bool->Void = null) {
+    public function authorize(options: Any = null, callback: Bool->Void = null) {
         if (authorizeCallback != null) return;
         authorizeCallback = callback;
         Syntax.code("bridge.player.authorize({0}).then({1}).catch({2})", options, onAuthorizeThen, onAuthorizeCatch);

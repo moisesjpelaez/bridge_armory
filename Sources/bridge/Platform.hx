@@ -13,12 +13,10 @@ class Platform {
     public var payload(get, null): String;
     public var tld(get, null): String;
     public var isAudioEnabled(get, null): Bool;
-    public var isGetAllGamesSupported(get, null): Bool;
-    public var isGetGameByIdSupported(get, null): Bool;
+    public var isExternalCallsSupported(get, null): Bool;
+    public var isExternalLinksAllowed(get, null): Bool;
 
     var getServerTimeCallback: Int->Void = null;
-    var getAllGamesCallback: Any->Void = null;
-    var getGameByIdCallback: Any->Void = null;
 
     public function new() {
         Syntax.code('bridge.platform.on(bridge.EVENT_NAME.AUDIO_STATE_CHANGED, {0})', onAudioStateChanged);
@@ -49,12 +47,12 @@ class Platform {
         return Syntax.code('bridge.platform.isAudioEnabled');
     }
 
-    function get_isGetAllGamesSupported(): Bool {
-        return Syntax.code('bridge.platform.isGetAllGamesSupported');
+    function get_isExternalCallsSupported(): Bool {
+        return Syntax.code('bridge.platform.isExternalCallsSupported');
     }
 
-    function get_isGetGameByIdSupported(): Bool {
-        return Syntax.code('bridge.platform.isGetGameByIdSupported');
+    function get_isExternalLinksAllowed(): Bool {
+        return Syntax.code('bridge.platform.isExternalLinksAllowed');
     }
 
     public function sendMessage(message: String, ?options: Any = null) {
@@ -83,32 +81,6 @@ class Platform {
         if (getServerTimeCallback != null) {
             getServerTimeCallback(0);
             getServerTimeCallback = null;
-        }
-    }
-
-    public function getAllGames(callback: Any->Void) {
-        if (getAllGamesCallback != null) return;
-        getAllGamesCallback = callback;
-        Syntax.code('bridge.platform.getAllGames().then({0})', onGetAllGamesThen);
-    }
-
-    function onGetAllGamesThen(data: Any) {
-        if (getAllGamesCallback != null) {
-            getAllGamesCallback(data);
-            getAllGamesCallback = null;
-        }
-    }
-
-    public function getGameById(options: String, callback: Any->Void) {
-        if (getGameByIdCallback != null) return;
-        getGameByIdCallback = callback;
-        Syntax.code('bridge.platform.getGameById({0}).then({1})', options, onGetGameById);
-    }
-
-    function onGetGameById(data: Any) {
-        if (getGameByIdCallback != null) {
-            getGameByIdCallback(data);
-            getGameByIdCallback = null;
         }
     }
 

@@ -15,13 +15,17 @@ class RemoteConfig {
         return Syntax.code('bridge.remoteConfig.isSupported');
     }
 
-    public function get(?options: Any = null, ?callback: (Bool, Any)->Void = null) {
+    public function setContext(context: Any) {
+        Syntax.code('bridge.remoteConfig.setContext({0})', context);
+    }
+
+    public function get(callback: (Bool, Any)->Void = null) {
         if (isGetting || callback == null) return;
 
         isGetting = true;
         getCallback = callback;
 
-        Syntax.code('bridge.remoteConfig.get({0}).then({1}).catch({2})', options, onGetThen, onGetCatch);
+        Syntax.code('bridge.remoteConfig.get().then({0}).catch({1})', onGetThen, onGetCatch);
     }
 
     function onGetThen(flags: Any) {

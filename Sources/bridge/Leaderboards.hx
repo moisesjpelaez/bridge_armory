@@ -11,10 +11,10 @@ class Leaderboards {
 
     }
 
-    public function setScore(id: String, score: Int, ?callback: Bool->Void = null) {
+    public function setScore(id: String, score: Int, callback: Bool->Void = null) {
         if (setScoreCallback != null) return;
         setScoreCallback = callback;
-        Syntax.code('bridge.leaderboard.setScore({0}, {1}).then({2}).catch({3})', id, score, onSetScoreThen, onSetScoreCatch);
+        Syntax.code('bridge.leaderboards.setScore({0}, {1}).then({2}).catch({3})', id, score, onSetScoreThen, onSetScoreCatch);
     }
 
     function onSetScoreThen() {
@@ -31,10 +31,10 @@ class Leaderboards {
         }
     }
 
-    public function getEntries(id: String, ?callback: (Bool, Map<Any, TEntry>)->Void = null) {
+    public function getEntries(id: String, callback: (Bool, Map<Any, TEntry>)->Void = null) {
         if (getEntriesCallback != null) return;
         getEntriesCallback = callback;
-        Syntax.code('bridge.leaderboard.getEntries({0}).then({1}).catch({2})', id, onGetEntriesThen, onGetEntriesCatch);
+        Syntax.code('bridge.leaderboards.getEntries({0}).then({1}).catch({2})', id, onGetEntriesThen, onGetEntriesCatch);
     }
 
     function onGetEntriesThen(entries: Map<Any, TEntry>) {
@@ -51,10 +51,10 @@ class Leaderboards {
         }
     }
 
-    function showNativePopup(id: String, ?callback: Bool->Void = null) {
+    function showNativePopup(id: String, callback: Bool->Void = null) {
         if (showNativePopupCallback != null) return;
         showNativePopupCallback = callback;
-        Syntax.code('bridge.leaderboard.showNativePopup({0}).then({1}).catch({2})', id, onShowNativePopupThen, onShowNativePopupCatch);
+        Syntax.code('bridge.leaderboards.showNativePopup({0}).then({1}).catch({2})', id, onShowNativePopupThen, onShowNativePopupCatch);
     }
 
     function onShowNativePopupThen() {
