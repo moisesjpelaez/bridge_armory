@@ -5,6 +5,7 @@ import js.Syntax;
 class Bridge {
     public static var achievements: Achievements = new Achievements();
     public static var advertisement: Advertisement = new Advertisement();
+    public static var clipboard: Clipboard = new Clipboard();
     public static var crossPromo: CrossPromo = new CrossPromo();
     public static var dailyRewards: DailyRewards = new DailyRewards();
     public static var device: Device = new Device();
