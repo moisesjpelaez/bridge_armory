@@ -5,7 +5,7 @@ import js.Syntax;
 class DailyRewards {
     var getRewardsCallback: (Bool, Array<String>)->Void = null;
     var getCurrentDayCallback: (Bool, Int)->Void = null;
-    var getCurrentRewardCallback: (Bool, String<Null>)->Void = null;
+    var getCurrentRewardCallback: (Bool, String)->Void = null;
     var claimCurrentRewardCallback: Bool->Void = null;
 
     public function new() {
@@ -52,13 +52,13 @@ class DailyRewards {
         }
     }
 
-    public function getCurrentReward(callback: (Bool, String<Null>)->Void) {
+    public function getCurrentReward(callback: (Bool, String)->Void) {
         if (getCurrentRewardCallback != null) return;
         getCurrentRewardCallback = callback;
         Syntax.code("bridge.dailyRewards.getCurrentReward().then({0}).catch({1})", onGetCurrentRewardThen, onGetCurrentRewardCatch);
     }
 
-    function onGetCurrentRewardThen(reward: String<Null>) {
+    function onGetCurrentRewardThen(reward: String) {
         if (getCurrentRewardCallback != null) {
             getCurrentRewardCallback(true, reward);
             getCurrentRewardCallback = null;

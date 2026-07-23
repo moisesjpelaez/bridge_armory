@@ -53,12 +53,10 @@
             clearTimeout(bridgeTimeout);
             bridge.engine = 'js'; // TODO: add 'armory' or 'kha'
             bridge.initialize().then(function(){
-                bridge.setLoadingProgress(0);
                 const khaElement = document.createElement('script');
                 khaElement.src = 'kha.js';
                 document.body.appendChild(khaElement);
                 khaElement.onload = function() {
-                    bridge.setLoadingProgress(100);
                     console.log("Kha initialized.");
                 }
             })

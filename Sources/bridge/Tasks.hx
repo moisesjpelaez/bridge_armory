@@ -4,7 +4,7 @@ import js.Syntax;
 
 class Tasks {
     var getTasksCallback: (Bool, Array<Any>)->Void = null;
-    var addProgressCallback: (Bool, String, Int)->Void = null;
+    var addProgressCallback: Bool->Void = null;
     var claimRewardCallback: Bool->Void = null;
 
     public function new() {
@@ -31,10 +31,10 @@ class Tasks {
         }
     }
 
-    public function addProgress(metric: String, amount: Int = 1, callback: (Bool, String, Int)->Void) {
+    public function addProgress(metric: String, amount: Int = 1, callback: Bool->Void) {
         if (addProgressCallback != null) return;
         addProgressCallback = callback;
-        Syntax.code("bridge.tasks.addProgress({0}, {1}).then({2}).catch({3})", metrid, amount, onAddProgressThen, onAddProgressCatch);
+        Syntax.code("bridge.tasks.addProgress({0}, {1}).then({2}).catch({3})", metric, amount, onAddProgressThen, onAddProgressCatch);
     }
 
     function onAddProgressThen() {

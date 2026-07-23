@@ -4,7 +4,7 @@ import js.Syntax;
 
 class Achievements {
     var unlockCallback: Bool->Void = null;
-    var getAchievementsCallback: Bool->Void = null;
+    var getAchievementsCallback: (Bool, Array<Any>)->Void = null;
 
     public function new(): Void {
 
@@ -30,7 +30,7 @@ class Achievements {
         }
     }
 
-    public function getAchievements() {
+    public function getAchievements(callback: (Bool, Array<Any>)->Void): Void {
         if (getAchievementsCallback != null) return;
         getAchievementsCallback = callback;
         Syntax.code("bridge.achievements.getAchievements().then({0}).catch({1})", onGetAchievementsThen, onGetAchievementsCatch);
