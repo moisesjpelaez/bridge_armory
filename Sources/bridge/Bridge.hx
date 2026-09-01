@@ -10,6 +10,7 @@ class Bridge {
     public static var dailyRewards: DailyRewards = new DailyRewards();
     public static var device: Device = new Device();
     public static var leaderboards: Leaderboards = new Leaderboards();
+    public static var notifications: Notifications = new Notifications();
     public static var payments: Payments = new Payments();
     public static var platform: Platform = new Platform();
     public static var player: Player = new Player();
