@@ -10,6 +10,7 @@ class Social {
     public var isAddToFavoritesSupported(get, null): Bool;
     public var isAddToHomeScreenSupported(get, null): Bool;
     public var isRateSupported(get, null): Bool;
+    public var isPostRewardSupported(get, null): Bool;
 
     var shareCallback: Bool->Void = null;
     var joinCommunityCallback: Bool->Void = null;
@@ -18,6 +19,7 @@ class Social {
     var addToFavoritesCallback: Bool->Void = null;
     var addToHomeScreenCallback: Bool->Void = null;
     var rateCallback: Bool->Void = null;
+    var getPostRewardCallback: (Bool, Any)->Void = null;
 
     public function new() {
 
@@ -49,6 +51,10 @@ class Social {
 
     function get_isRateSupported(): Bool {
         return Syntax.code('bridge.social.isRateSupported');
+    }
+
+    function get_isPostRewardSupported(): Bool {
+        return Syntax.code('bridge.social.isPostRewardSupported');
     }
 
     public function share(options: Any = null, callback: Bool->Void = null) {
@@ -111,7 +117,14 @@ class Social {
         }
     }
 
-    public function createPost(options: Any = null, callback: Bool->Void = null) {
+    public function createPost(entry: String, payload: String, callback: Bool->Void) {
+        if (createPostCallback != null) return;
+        createPostCallback = callback;
+        Syntax.code('bridge.social.createPost({0}, {1}).then({2}).catch({3})', entry, payload, onCreatePostThen, onCreatePostCatch);
+    }
+
+    // HACK: temporary solution to use options. Investigate about Haxe abstracts for a more elegant solution.
+    public function createPostOptions(options: Any = null, callback: Bool->Void = null) {
         if (createPostCallback != null) return;
         createPostCallback = callback;
         Syntax.code('bridge.social.createPost({0}).then({1}).catch({2})', options, onCreatePostThen, onCreatePostCatch);
@@ -188,6 +201,26 @@ class Social {
         if (rateCallback != null) {
             rateCallback(false);
             rateCallback = null;
+        }
+    }
+
+    public function getPostReward(callbak: (Bool, Any)->Void = null) {
+        if (getPostRewardCallback != null) return;
+        getPostRewardCallback = callbak;
+        Syntax.code('bridge.social.getPostReward().then({0}).catch({1})', onGetPostRewardThen, onGetPostRewardCatch);
+    }
+
+    function onGetPostRewardThen(rewards: Any) {
+        if (getPostRewardCallback != null) {
+            getPostRewardCallback(true, rewards);
+            getPostRewardCallback = null;
+        }
+    }
+
+    function onGetPostRewardCatch(error: String) {
+        if (getPostRewardCallback != null) {
+            getPostRewardCallback(false, null);
+            getPostRewardCallback = null;
         }
     }
 }

@@ -9,21 +9,19 @@ Notes: after building for html5, locate the `index.html` file in `build_[your_pr
 
 ## Supported platforms
 + [Playgama](https://playgama.com/)
++ [Standalone](https://playgama.com/wrap/?utm_source=github&utm_medium=bridge)
 + [Game Distribution](https://gamedistribution.com)
 + [Crazy Games](https://crazygames.com)
 + [Yandex Games](https://yandex.com/games)
 + [Y8](https://y8.com)
-+ [PlayDeck](https://playdeck.io)
 + [Telegram](https://core.telegram.org/bots/webapps)
 + [VK](https://vk.com)
 + [OK](https://ok.ru)
-+ [Absolute Games](https://ag.ru)
 + [Lagged](https://lagged.com)
 + [Facebook](https://www.facebook.com/games/instantgames)
 + [Poki](https://poki.com/)
 + [MSN](https://www.msn.com/en-us/play)
 + [Discord](https://discord.com/gaming)
-+ [BitQuest](https://t.me/BitquestGamesBot/start)
 + [Huawei](https://appgallery.huawei.com)
 + [JioGames](https://play.jiogames.com)
 + [YouTube](https://www.youtube.com/playables)
@@ -32,6 +30,9 @@ Notes: after building for html5, locate the `index.html` file in `build_[your_pr
 + [Microsoft Store](https://apps.microsoft.com)
 + [GameSnacks](https://gamesnacks.com/)
 + [Dlightek/Aha Games](https://aha.game/)
++ [Portal](https://portalapp.games)
++ [TikTok](https://developers.tiktok.com/doc/mini-games-sdk-overview)
++ [Samsung Instant Plays](https://developer.samsung.com/instant-plays)
 + Other [Work In Progress]
 
 ## Plugins for game engines

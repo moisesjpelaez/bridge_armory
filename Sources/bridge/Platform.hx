@@ -12,6 +12,8 @@ class Platform {
     public var language(get, null): String;
     public var payload(get, null): String;
     public var tld(get, null): String;
+    public var launchSource(get, null): String;
+    public var data(get, null): Any;
     public var isAudioEnabled(get, null): Bool;
     public var isExternalCallsSupported(get, null): Bool;
     public var isExternalLinksAllowed(get, null): Bool;
@@ -41,6 +43,14 @@ class Platform {
 
     function get_tld(): Null<String> {
         return Syntax.code('bridge.platform.tld');
+    }
+
+    function get_launchSource(): Null<String> {
+        return Syntax.code('bridge.platform.launchSource');
+    }
+
+    function get_data(): Null<Any> {
+        return Syntax.code('bridge.platform.data');
     }
 
     function get_isAudioEnabled(): Bool {
